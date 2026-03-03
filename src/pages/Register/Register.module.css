@@ -1,0 +1,11 @@
+.register {
+    text-align: center;
+}
+
+.register p {
+    color: #aaa;
+}
+
+.register form label {
+    align-items: left;
+}
