@@ -3,6 +3,7 @@ import styles from "./Register.module.css";
 
 // import hooks
 import { useState, useEffect } from "react";
+import { useAuthentication } from "../../hooks/useAuthentication";
 
 const Register = () => {
 
@@ -13,8 +14,11 @@ const Register = () => {
   const [confirmPassword, setConfirmPassword] = useState("")
   const [error, setError] = useState("")
 
+  // pegando as variáveis do useAuthentication
+  const {createUser, error: authError, loading} = useAuthentication()
+
   // definindo variável para envio do form
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
 
     // para resetar os erros
@@ -32,8 +36,17 @@ const Register = () => {
       return
     }
 
-    console.log(user)
+    const res = await createUser(user)
+
+    console.log(res)
   }
+
+  // para mapear a função authError e alterar setError para exibir setError
+  useEffect(() => {
+    if(authError) {
+      setError(authError)
+    }
+  }, [authError])
 
   return (
     <div className={styles.register}>
@@ -85,6 +98,7 @@ const Register = () => {
           />
         </label>
         <button className="btn">Cadastrar</button>
+        {error && <p className="error">{error}</p>}
       </form>
     </div>
   );
