@@ -48,7 +48,7 @@ export const useAuthentication = () => {
       });
 
       setLoading(false);
-      
+
       return user;
     } catch (error) {
       console.log(error.message);
@@ -80,5 +80,6 @@ export const useAuthentication = () => {
     createUser,
     error,
     loading,
+    auth
   };
 };

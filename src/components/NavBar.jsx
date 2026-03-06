@@ -4,7 +4,13 @@ import styles from "./NavBar.module.css";
 // import React Router
 import { NavLink } from "react-router-dom";
 
+// import hooks
+import { useAuthentication } from "../hooks/useAuthentication";
+import { useAuthValue } from "../context/authContext";
+
 const NavBar = () => {
+  const { user } = useAuthValue();
+
   return (
     <div>
       <nav className={styles.navbar}>
@@ -20,22 +26,48 @@ const NavBar = () => {
               Home
             </NavLink>
           </li>
-          <li>
-            <NavLink
-              to="/login"
-              className={({ isActive }) => (isActive ? styles.active : "")}
-            >
-              Entrar
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="/register"
-              className={({ isActive }) => (isActive ? styles.active : "")}
-            >
-              Cadastrar
-            </NavLink>
-          </li>
+          {!user && (
+            <>
+              <li>
+                <NavLink
+                  to="/login"
+                  className={({ isActive }) => (isActive ? styles.active : "")}
+                >
+                  Entrar
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="/register"
+                  className={({ isActive }) => (isActive ? styles.active : "")}
+                >
+                  Cadastrar
+                </NavLink>
+              </li>
+            </>
+          )}
+
+          {user && (
+            <>
+              <li>
+                <NavLink
+                  to="/posts/create"
+                  className={({ isActive }) => (isActive ? styles.active : "")}
+                >
+                  Novo Post
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="/posts/dashboard"
+                  className={({ isActive }) => (isActive ? styles.active : "")}
+                >
+                  Dashboard
+                </NavLink>
+              </li>
+            </>
+          )}
+
           <li>
             <NavLink
               to="/about"
