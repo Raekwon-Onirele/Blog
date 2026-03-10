@@ -11,6 +11,9 @@ import { useAuthValue } from "../context/authContext";
 const NavBar = () => {
   const { user } = useAuthValue();
 
+  // importando a função logout do useAuthenticantion
+  const { logout } = useAuthentication();
+
   return (
     <div>
       <nav className={styles.navbar}>
@@ -76,6 +79,12 @@ const NavBar = () => {
               Sobre
             </NavLink>
           </li>
+          {/* Criando uma condicional para mostrar o button sair */}
+          {user && (
+            <li>
+              <button onClick={ logout }>Sair</button>
+            </li>
+          )}
         </ul>
       </nav>
     </div>

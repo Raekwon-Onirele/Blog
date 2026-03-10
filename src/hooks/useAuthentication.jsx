@@ -18,7 +18,7 @@ export const useAuthentication = () => {
   // // variável para limpar as funções posteriormente
   const [cancelled, setCancelled] = useState(false);
 
-  const auth = getAuth();
+  
 
   // função para fazer a limpeza, para esvaziar a memória
   function checkIfIsCancelled() {
@@ -72,6 +72,47 @@ export const useAuthentication = () => {
     setLoading(false);
   };
 
+  // logout
+  const logout = () => {
+    checkIfIsCancelled();
+
+    signOut(auth);
+  };
+
+  // função para entrar com o usuário já cadastrado
+  const login = async (data) => {
+    checkIfIsCancelled();
+
+    setLoading(true);
+    setError(false);
+
+    try {
+      await signInWithEmailAndPassword(auth, data.email, data.password);
+    } catch (error) {
+      console.log(error.message);
+      console.log(typeof error.message);
+      console.log(error.message.includes("user-not"));
+
+      let systemErrorMessage;
+
+      if (error.message.includes("user-not-found")) {
+        systemErrorMessage = "Usuário não encontrado";
+      } else if (error.message.includes("wrong-password")) {
+        systemErrorMessage = "Senha incorreta.";
+      } else {
+        systemErrorMessage = "Seu Login ou Senha estão incorretos";
+      }
+
+      console.log(systemErrorMessage);
+
+      setError(systemErrorMessage);
+    }
+
+    console.log(error);
+
+    setLoading(false);
+  };
+
   useEffect(() => {
     return () => setCancelled(true);
   }, []);
@@ -80,6 +121,8 @@ export const useAuthentication = () => {
     createUser,
     error,
     loading,
-    auth
+    auth,
+    logout,
+    login,
   };
 };
