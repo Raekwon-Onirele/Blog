@@ -28,17 +28,31 @@ const CreatePost = () => {
   // definindo o useInsertDocument
   const { insertDocument, response } = useInsertDocument("posts")
 
+  const navigate = useNavigate()
+
   // para envio do form
   const handleSubmit = (e) => {
     e.preventDefault();
     setFormError("")
 
     // validar imagem URL
+    try {
+      new URL(image)
+    } catch (error) {
+      setFormError("A imagem precisa ser uma URL")
+    }
 
     // criando o arrays de tags
+    const tagsArray = tags.split(",").map((tag) => tag.trim().toLowerCase())
 
-    // checando todos os valores
+    // checando se todos os valores chegaram
+    if(!title || !image || !tags || !body) {
+      setFormError("Preencha todos os campos")
+    }
 
+    if (formError) return;
+
+    // para inserir todas as informações do doc
     insertDocument({
       title,
       image,
@@ -47,7 +61,9 @@ const CreatePost = () => {
       uid: user.uid,
       createdBy: user.displayName
     })
-    console.log(db)
+
+    // redirecionar para home
+    navigate("/")
   };
 
   return (
@@ -105,6 +121,7 @@ const CreatePost = () => {
           </button>
         )}
         {response.error && <p className="error">{response.error}</p>}
+        {formError && <p className="error">{formError}</p>}
       </form>
     </div>
   );
