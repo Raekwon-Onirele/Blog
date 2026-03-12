@@ -13,7 +13,6 @@ import { useAuthValue } from "../../context/authContext";
 
 import { db } from "../../firebase/config";
 
-
 const CreatePost = () => {
   // variáveis que serão usadas para criar o Post
   const [title, setTitle] = useState("");
@@ -23,33 +22,43 @@ const CreatePost = () => {
   const [formError, setFormError] = useState("");
 
   // definindo o user
-  const { user } = useAuthValue()
+  const { user } = useAuthValue();
 
   // definindo o useInsertDocument
-  const { insertDocument, response } = useInsertDocument("posts")
+  const { insertDocument, response } = useInsertDocument("posts");
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   // para envio do form
   const handleSubmit = (e) => {
     e.preventDefault();
-    setFormError("")
+    setFormError("");
 
     // validar imagem URL
     try {
-      new URL(image)
+      new URL(image);
     } catch (error) {
-      setFormError("A imagem precisa ser uma URL")
+      setFormError("A imagem precisa ser uma URL");
     }
 
     // criando o arrays de tags
-    const tagsArray = tags.split(",").map((tag) => tag.trim().toLowerCase())
+    const tagsArray = tags.split(",").map((tag) => tag.trim().toLowerCase());
 
     // checando se todos os valores chegaram
-    if(!title || !image || !tags || !body) {
-      setFormError("Preencha todos os campos")
+    if (!title || !image || !tags || !body) {
+      setFormError("Preencha todos os campos");
     }
 
+    console.log(tagsArray);
+
+    console.log({
+      title,
+      image,
+      body,
+      tags: tagsArray,
+      uid: user.uid,
+      createdBy: user.displayName,
+    });
     if (formError) return;
 
     // para inserir todas as informações do doc
@@ -57,13 +66,13 @@ const CreatePost = () => {
       title,
       image,
       body,
-      tags,
+      tagsArray,
       uid: user.uid,
-      createdBy: user.displayName
-    })
+      createdBy: user.displayName,
+    });
 
     // redirecionar para home
-    navigate("/")
+    navigate("/");
   };
 
   return (
