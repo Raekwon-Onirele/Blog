@@ -6,7 +6,7 @@ import { Link } from "react-router";
 
 const PostDetail = ({ post }) => {
   return (
-    <div className={styles.post_detail}>
+    <div className={styles.postDetail}>
       <img src={post.image} alt={post.title} />
       <h2>{post.title}</h2>
       <p className={styles.createdby}>por: {post.createdBy}</p>
