@@ -1,0 +1,20 @@
+.searchContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.searchContainer h2 {
+    margin-bottom: 1em;
+}
+
+.searchContainer h2 span {
+    font-style: italic;
+    color: #2f288e;
+}
+
+.searchContainer p {
+    margin-bottom: 30px;
+}
+
