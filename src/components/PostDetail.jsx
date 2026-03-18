@@ -10,6 +10,7 @@ const PostDetail = ({ post }) => {
       <img src={post.image} alt={post.title} />
       <h2>{post.title}</h2>
       <p className={styles.createdby}>por: {post.createdBy}</p>
+      <p className={styles.postBody}>Descrição: {post.body}</p>
       <div className={styles.tags}>
         {post.tags?.map((tag) => (
           <p key={tag}>
