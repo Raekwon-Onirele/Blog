@@ -9,17 +9,18 @@ import { useAuthValue } from "../../context/authContext";
 
 // import hooks
 import { useFetchDocument } from "../../hooks/useFetchDocument";
+import { useDeleteDocument } from "../../hooks/useDeleteDocument";
 
 const Dashboard = () => {
   // definindo user do useAuth para validação
   const { user } = useAuthValue();
   const uid = user.id;
 
+  // definindo delete document, para deletar o documento selecionado
+  const { deleteDocument } = useDeleteDocument("posts")
+
   // definindo posts do user
   const { documents: posts, loading } = useFetchDocument("posts", null, uid);
-
-  // função para deletar documento
-  const deleteDocument = (id) => {};
 
   // função loading 
   if(loading) {
