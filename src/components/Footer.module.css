@@ -21,3 +21,7 @@
     color: #000;
     font-weight: bold;
 }
+
+.github span a {
+    font-weight: 400;
+}

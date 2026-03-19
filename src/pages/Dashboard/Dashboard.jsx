@@ -14,7 +14,7 @@ import { useDeleteDocument } from "../../hooks/useDeleteDocument";
 const Dashboard = () => {
   // definindo user do useAuth para validação
   const { user } = useAuthValue();
-  const uid = user.id;
+  const uid = user.uid;
 
   // definindo delete document, para deletar o documento selecionado
   const { deleteDocument } = useDeleteDocument("posts")
@@ -30,7 +30,7 @@ const Dashboard = () => {
   return (
     <div className={styles.dashboard}>
       <h2>Dashboard</h2>
-      <p>Gerencie seus Posts</p>
+      <p>Gerencie seus Posts:</p>
       
       {posts && posts.length === 0 ? (
         // Caso não chegue nenhum post

@@ -33,3 +33,9 @@
     color: #fff;
     padding: 0.5em;
 }
+
+.buttonLogout {
+    margin-top: -.5em;
+    color: #ff0000;
+    font-weight: bold;
+}

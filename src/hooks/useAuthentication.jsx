@@ -18,8 +18,6 @@ export const useAuthentication = () => {
   // // variável para limpar as funções posteriormente
   const [cancelled, setCancelled] = useState(false);
 
-  
-
   // função para fazer a limpeza, para esvaziar a memória
   function checkIfIsCancelled() {
     if (cancelled) {

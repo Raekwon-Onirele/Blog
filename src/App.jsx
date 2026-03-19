@@ -31,10 +31,10 @@ import EditPost from "./pages/EditPost/EditPost";
 
 function App() {
   // > autenticação para verificar e iniciar o user em todo o projeto
-  const [user, setUser] = useState(undefined);
+  const [ user, setUser ] = useState(undefined);
   const { auth } = useAuthentication();
 
-  // definindo o loading para quando o user for undefined
+  // definindo o loading se o user for undefined
   const loadingUser = user === undefined;
 
   // mapeando o auth vindo do useAuthentication
@@ -44,7 +44,7 @@ function App() {
     });
   }, [auth]);
 
-  // quando o user for igual a undefined, traz um texto de carregamento
+  // enquanto o user for igual a undefined, traz um texto de carregamento
   if (loadingUser) {
     return <p>Carregando...</p>;
   }

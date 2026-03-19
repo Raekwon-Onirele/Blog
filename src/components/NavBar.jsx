@@ -82,7 +82,7 @@ const NavBar = () => {
           {/* Criando uma condicional para mostrar o button sair */}
           {user && (
             <li>
-              <button onClick={ logout }>Sair</button>
+              <button onClick={ logout } className={styles.buttonLogout}>Sair</button>
             </li>
           )}
         </ul>

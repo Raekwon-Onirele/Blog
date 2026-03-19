@@ -5,6 +5,11 @@
     align-items: center;
 }
 
+.searchForm input {
+    font-size: 20px;
+    margin-top: 10px;
+}
+
 .searchForm {
     max-width: 100%;
     width: 60%;
