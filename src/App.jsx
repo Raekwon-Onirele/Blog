@@ -2,7 +2,7 @@
 import "./App.css";
 
 // import React Router
-import { HashRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 // import firebase
 import { onAuthStateChanged } from "firebase/auth";
@@ -54,7 +54,7 @@ function App() {
     <>
       {/* Colocando o user para ser acessado em todo o projeto */}
       <AuthProvider value={{ user }}>
-        <HashRouter>
+        <BrowserRouter>
           <NavBar />
           <div className="container">
             <Routes>
@@ -87,7 +87,7 @@ function App() {
             </Routes>
           </div>
           <Footer />
-        </HashRouter>
+        </BrowserRouter>
       </AuthProvider>
     </>
   );
